@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/screens/add_task_screen.dart';
+import 'package:todoapp/widgets/task_view.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -7,7 +9,19 @@ class TasksScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.pinkAccent,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskScreen(),
+                ),
+              ),
+            );
+          },
           child: Icon(Icons.add),
           backgroundColor: Colors.pinkAccent,
         ),
@@ -70,34 +84,6 @@ class TasksScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class TaskView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[TaskTile()],
-    );
-  }
-}
-
-class TaskTile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      trailing: Checkbox(
-        activeColor: Colors.pinkAccent,
-        value: true,
-        onChanged: (value) {},
-      ),
-      title: Text(
-        'List 1',
-        style: TextStyle(
-          fontSize: 18.0,
         ),
       ),
     );

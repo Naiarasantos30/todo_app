@@ -14,6 +14,9 @@ class TaskView extends StatelessWidget {
             return TaskTile(
               isChecked: task.isDone,
               title: task.name,
+              longPressCallback: () {
+                taskData.deleteTask(task);
+              },
               checkBox: (newValue) {
                 taskData.updateTask(task);
               },

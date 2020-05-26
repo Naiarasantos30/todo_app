@@ -1,16 +1,29 @@
-# todoapp
+# Todo app
 
-A new Flutter application.
+This is an app to practice flutter and manage your tasks.
 
-## Getting Started
+# How to run
 
-This project is a starting point for a Flutter application.
+```shell
+cd todo_app/
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+Or do Fn + F5 if you're on mac notebook
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Final Result
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You can see when you click the app, that will manage your tasks. Image of the app:
+
+View of the app
+
+![view of app](assets/app-video.gif)
+
+## Technologies
+
+- Flutter
+
+# Made By
+
+- [Linkedin](https://br.linkedin.com/in/larissa-varj%C3%A3o-152932b8)
+- [Website](http://larissavarjao.com/)

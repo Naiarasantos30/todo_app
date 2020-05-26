@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/models/task.dart';
 import 'package:todoapp/screens/add_task_screen.dart';
 import 'package:todoapp/widgets/task_view.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy bread'),
+  ];
+
+  void addTaskOnTaskList(Task task) {
+    setState(() {
+      tasks.add(task);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +35,7 @@ class TasksScreen extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: AddTaskScreen(),
+                  child: AddTaskScreen(addTask: addTaskOnTaskList,),
                 ),
               ),
             );
@@ -59,7 +77,7 @@ class TasksScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '12 tasks',
+                    '${tasks.length} tasks',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
@@ -73,7 +91,11 @@ class TasksScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
-                child: TaskView(),
+                child: TaskView(tasks: tasks, checkBoxCallBack: (newValue, index) {
+                  setState(() {
+                    tasks[index].toggleDone();
+                  });
+                },),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/models/task_data.dart';
 import 'package:todoapp/screens/add_task_screen.dart';
 import 'package:todoapp/widgets/task_view.dart';
 
@@ -9,18 +10,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy bread'),
-  ];
-
-  void addTaskOnTaskList(Task task) {
-    setState(() {
-      tasks.add(task);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +24,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Container(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: AddTaskScreen(addTask: addTaskOnTaskList,),
+                  child: AddTaskScreen(),
                 ),
               ),
             );
@@ -77,7 +66,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ),
                   Text(
-                    '${tasks.length} tasks',
+                    '${Provider.of<TaskData>(context).taskCount} tasks',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
@@ -91,11 +80,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 padding: EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
-                child: TaskView(tasks: tasks, checkBoxCallBack: (newValue, index) {
-                  setState(() {
-                    tasks[index].toggleDone();
-                  });
-                },),
+                child: TaskView(),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
